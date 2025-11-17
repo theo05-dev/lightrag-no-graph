@@ -8,12 +8,6 @@ def initialize_rag(working_dir="db"):
     """
     return LightRAG(
         working_dir,
-        graph_mode="none",
-        enable_llm_for_edges=False,
-        enable_edge_llm=False,
-        do_reflection=False,
-        do_initial_summary=False,
-        do_summary=False,
     )
 
 def load_pdf_text(path):
