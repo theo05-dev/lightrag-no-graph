@@ -43,4 +43,3 @@ def insert_text_and_check_graph(rag, text, working_dir="db"):
 
 def query_rag(rag, query):
     return rag.query(query)
-´
