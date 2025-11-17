@@ -1,4 +1,4 @@
-from lightrag import LightRAG
+from lightrag_hku import LightRAG
 from PyPDF2 import PdfReader
 from pathlib import Path
 
