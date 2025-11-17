@@ -2,5 +2,5 @@ fastapi
 uvicorn[standard]
 python-multipart
 PyPDF2
-lightrag
 python-dotenv
+git+https://github.com/HKUDS/LightRAG.git#egg=lightrag-hku
