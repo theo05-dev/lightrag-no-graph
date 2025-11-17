@@ -8,7 +8,6 @@ def initialize_rag(working_dir="db"):
     """
     return LightRAG(
         working_dir,
-        graph_enabled=False,
         enable_graph_index=False,
         graph_mode="none",
         enable_llm_for_edges=False,
