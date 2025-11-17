@@ -43,3 +43,4 @@ def health():
         "ok": True,
         "graph_exists": graph_dir.exists(),
         "graph_files": [str(f) for f in graph_dir.glob("**/*")] if graph_dir.exists() else []
+        }
