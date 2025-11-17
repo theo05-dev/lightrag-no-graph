@@ -36,6 +36,7 @@ def insert_text_and_check_graph(rag, text, working_dir="db"):
 
     return {
         "graph_exists": graph_dir.exists(),
-        "graph_files": [str(f) for f in graph_dir.glob("**/
+        "graph_files": [str(f) for f in graph_dir.glob("**/*")]
+
 def query_rag(rag, query):
     return rag.query(query)
