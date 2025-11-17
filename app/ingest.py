@@ -1,38 +1,38 @@
+import os
 from lightrag import LightRAG
+from lightrag.llm import OpenAI
+from lightrag.embeddings import OpenAIEmbedder
 from PyPDF2 import PdfReader
-from pathlib import Path
 
 def initialize_rag(working_dir="db"):
-    """
-    Inicializa o LightRAG 100% SEM GRAPH.
-    """
+    llm = OpenAI(
+        api_key=os.getenv("OPENAI_API_KEY"),
+    )
+
+    embedder = OpenAIEmbedder(
+        api_key=os.getenv("OPENAI_API_KEY"),
+        model="text-embedding-3-large"
+    )
+
+    # LightRAG atual NÃO aceita graph_enabled nem enable_summary
     return LightRAG(
-        working_dir,
-        graph_enabled=False,
-        enable_graph_index=False,
-        graph_mode="none",
-        enable_llm_for_edges=False,
-        enable_edge_llm=False,
-        graph_llm_enabled=False,
-        enable_summary=False,
-        do_reflection=False,
-        do_initial_summary=False,
-        do_summary=False,
+        working_dir=working_dir,
+        llm=llm,
+        embedder=embedder
     )
 
 def load_pdf_text(path):
     reader = PdfReader(path)
     text = ""
     for page in reader.pages:
-        t = page.extract_text()
-        if t:
-            text += t + "\n"
+        content = page.extract_text()
+        if content:
+            text += content + "\n"
     return text
 
 def insert_text_and_check_graph(rag, text, working_dir="db"):
-    """
-    Insere o texto no LightRAG e checa se algum grafo foi criado.
-    """
+    from pathlib import Path
+
     rag.insert(text)
     graph_dir = Path(working_dir) / "graph"
 
